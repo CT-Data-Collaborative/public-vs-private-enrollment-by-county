@@ -17,7 +17,7 @@ source('./scripts/acsHelpers.R')
 
 #Get state data
 geography=geo.make(state=09)
-yearlist=c(2010:2016)
+yearlist=c(2010:2017)
 span = 5
 col.names="pretty" 
 key="ed0e58d2538fb239f51e01643745e83f380582d7"
@@ -35,6 +35,7 @@ for (i in seq_along(yearlist)) {
   variable <- as.character(variable)    
   data <- acs.fetch(geography=geography, endyear=endyear, span=span, 
                     variable = variable, key=key)
+  print(data)
   year <- data@endyear
   print(paste("Processing: ", year))
   year <- paste(year-4, year, sep="-")
@@ -475,7 +476,7 @@ dataset <- dataset %>%
 
 write.table(
     dataset,
-    file.path("data", "public-vs-private-enrollment-county-2016.csv"),
+    file.path("data", "public-vs-private-enrollment-county-2017.csv"),
     sep = ",",
     row.names = F,
     na = "-9999"
